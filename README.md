@@ -11,4 +11,4 @@ git checkout HEAD -- "$(git rev-parse --show-toplevel)"
 git stash pop
 ```
 
-Commits made to the repository will be converted back into plain text.
+Commits made to the repository will be converted back into plain text automatically.
