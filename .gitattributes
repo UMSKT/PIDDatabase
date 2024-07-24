@@ -1,2 +1,0 @@
-*.db filter=sqlite3
-*.sqlite3 filter=sqlite3
