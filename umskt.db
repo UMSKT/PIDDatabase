@@ -1,0 +1,141 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE ChannelRanges (
+                                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    MainTableID INT,
+                                    StartRange INT,
+                                    EndRange INT, Notes TEXT,
+                                    FOREIGN KEY (MainTableID) REFERENCES UniqueNames(ID)
+);
+INSERT INTO ChannelRanges VALUES(4,1,5,85,NULL);
+INSERT INTO ChannelRanges VALUES(5,1,337,359,'60 day trial');
+INSERT INTO ChannelRanges VALUES(6,3,119,119,NULL);
+INSERT INTO ChannelRanges VALUES(7,2,400,699,NULL);
+INSERT INTO ChannelRanges VALUES(8,6,119,119,NULL);
+INSERT INTO ChannelRanges VALUES(9,9,119,119,NULL);
+INSERT INTO ChannelRanges VALUES(10,12,119,119,NULL);
+INSERT INTO ChannelRanges VALUES(11,4,755,779,NULL);
+INSERT INTO ChannelRanges VALUES(12,4,5,85,NULL);
+INSERT INTO ChannelRanges VALUES(13,4,337,359,'60 day trial');
+INSERT INTO ChannelRanges VALUES(14,5,120,169,NULL);
+INSERT INTO ChannelRanges VALUES(15,5,400,699,NULL);
+INSERT INTO ChannelRanges VALUES(16,5,700,754,NULL);
+INSERT INTO ChannelRanges VALUES(17,8,120,169,NULL);
+INSERT INTO ChannelRanges VALUES(18,8,400,665,NULL);
+INSERT INTO ChannelRanges VALUES(19,8,667,699,NULL);
+INSERT INTO ChannelRanges VALUES(20,8,700,754,NULL);
+INSERT INTO ChannelRanges VALUES(21,7,5,85,NULL);
+INSERT INTO ChannelRanges VALUES(22,7,337,359,'60 day trial');
+INSERT INTO ChannelRanges VALUES(23,7,755,779,NULL);
+INSERT INTO ChannelRanges VALUES(24,11,120,169,NULL);
+INSERT INTO ChannelRanges VALUES(25,11,400,665,NULL);
+INSERT INTO ChannelRanges VALUES(26,11,667,699,NULL);
+INSERT INTO ChannelRanges VALUES(27,11,700,754,NULL);
+INSERT INTO ChannelRanges VALUES(28,11,85,85,NULL);
+INSERT INTO ChannelRanges VALUES(29,11,86,95,NULL);
+INSERT INTO ChannelRanges VALUES(30,11,96,105,NULL);
+INSERT INTO ChannelRanges VALUES(31,11,170,186,NULL);
+INSERT INTO ChannelRanges VALUES(32,11,189,189,NULL);
+INSERT INTO ChannelRanges VALUES(33,11,190,190,NULL);
+INSERT INTO ChannelRanges VALUES(34,11,191,191,NULL);
+INSERT INTO ChannelRanges VALUES(35,11,107,118,NULL);
+INSERT INTO ChannelRanges VALUES(36,11,192,336,NULL);
+INSERT INTO ChannelRanges VALUES(37,11,755,899,NULL);
+INSERT INTO ChannelRanges VALUES(38,11,921,979,NULL);
+INSERT INTO ChannelRanges VALUES(39,10,5,85,NULL);
+INSERT INTO ChannelRanges VALUES(40,10,337,359,'60 day trial');
+INSERT INTO ChannelRanges VALUES(41,10,755,779,NULL);
+INSERT INTO ChannelRanges VALUES(42,10,106,106,NULL);
+INSERT INTO ChannelRanges VALUES(43,10,187,187,'60 day trial');
+INSERT INTO ChannelRanges VALUES(44,10,188,188,'60 day trial');
+INSERT INTO ChannelRanges VALUES(45,10,362,376,NULL);
+INSERT INTO ChannelRanges VALUES(46,10,377,377,NULL);
+INSERT INTO ChannelRanges VALUES(47,10,984,984,NULL);
+CREATE TABLE IF NOT EXISTS "BINKs"
+(
+    ID          INTEGER
+        primary key autoincrement,
+    MainTableID INT
+        references UniqueNames,
+    BINK        TEXT
+);
+INSERT INTO BINKs VALUES(13,1,'2A');
+INSERT INTO BINKs VALUES(14,2,'2B');
+INSERT INTO BINKs VALUES(15,3,'2B');
+INSERT INTO BINKs VALUES(16,4,'2A');
+INSERT INTO BINKs VALUES(17,5,'2B');
+INSERT INTO BINKs VALUES(18,6,'2B');
+INSERT INTO BINKs VALUES(19,7,'2A');
+INSERT INTO BINKs VALUES(20,8,'2B');
+INSERT INTO BINKs VALUES(21,9,'2B');
+INSERT INTO BINKs VALUES(22,10,'2A');
+INSERT INTO BINKs VALUES(23,11,'2B');
+INSERT INTO BINKs VALUES(24,12,'2B');
+CREATE TABLE IF NOT EXISTS "products"
+(
+    ID             INTEGER
+        primary key autoincrement,
+    name           text not null,
+    edition        text not null,
+    licenseType    text not null,
+    serviceRelease text not null,
+    variant        text,
+    architecture   text not null
+);
+INSERT INTO products VALUES(1,'Windows XP','Home Edition','Retail','RTM',NULL,'x86');
+INSERT INTO products VALUES(2,'Windows XP','Home Edition','OEM-COA','RTM',NULL,'x86');
+INSERT INTO products VALUES(3,'Windows XP','Home Edition','OEM-SLP','RTM',NULL,'x86');
+INSERT INTO products VALUES(4,'Windows XP','Home Edition','Retail','SP1',NULL,'x86');
+INSERT INTO products VALUES(5,'Windows XP','Home Edition','OEM-COA','SP1',NULL,'x86');
+INSERT INTO products VALUES(6,'Windows XP','Home Edition','OEM-SLP','SP1',NULL,'x86');
+INSERT INTO products VALUES(7,'Windows XP','Home Edition','Retail','SP2',NULL,'x86');
+INSERT INTO products VALUES(8,'Windows XP','Home Edition','OEM-COA','SP2',NULL,'x86');
+INSERT INTO products VALUES(9,'Windows XP','Home Edition','OEM-SLP','SP2',NULL,'x86');
+INSERT INTO products VALUES(10,'Windows XP','Home Edition','Retail','SP3',NULL,'x86');
+INSERT INTO products VALUES(11,'Windows XP','Home Edition','OEM-COA','SP3',NULL,'x86');
+INSERT INTO products VALUES(12,'Windows XP','Home Edition','OEM-SLP','SP3',NULL,'x86');
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('BINKs',24);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',47);
+INSERT INTO sqlite_sequence VALUES('products',12);
+CREATE VIEW FullView as
+WITH NotesCTE AS (
+    SELECT
+        c.MainTableID,
+        CONCAT('[', c.StartRange, ',', c.EndRange, ']: ', c.Notes) AS NoteEntry
+    FROM
+        ChannelRanges c
+    WHERE
+        c.Notes IS NOT NULL
+    GROUP BY
+        c.MainTableID, c.StartRange, c.EndRange, c.Notes
+)
+
+-- Main query to aggregate data
+SELECT
+    m.name, m.edition, m.licenseType, m.serviceRelease, m.variant, m.architecture,
+    CONCAT('[', GROUP_CONCAT(DISTINCT b.BINK ORDER BY b.BINK), ']') AS BINKs,
+    CONCAT(
+            '[',
+            GROUP_CONCAT(
+                    DISTINCT CONCAT('[', c.StartRange, ',', c.EndRange, ']')
+                    ORDER BY c.StartRange
+            ),
+            ']'
+    ) AS ChannelRanges,
+    GROUP_CONCAT(
+            DISTINCT NoteEntry
+            ORDER BY NoteEntry
+    ) AS Notes
+FROM
+    products m
+        LEFT JOIN
+    BINKs b ON m.ID = b.MainTableID
+        LEFT JOIN
+    ChannelRanges c ON m.ID = c.MainTableID
+        LEFT JOIN
+    NotesCTE n ON m.ID = n.MainTableID
+GROUP BY
+    m.ID, m.name
+;
+COMMIT;
