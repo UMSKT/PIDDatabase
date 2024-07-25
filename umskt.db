@@ -121,6 +121,10 @@ INSERT INTO ChannelRanges VALUES(114,27,119,119,NULL);
 INSERT INTO ChannelRanges VALUES(115,28,640,699,NULL);
 INSERT INTO ChannelRanges VALUES(116,28,700,701,NULL);
 INSERT INTO ChannelRanges VALUES(117,28,704,705,NULL);
+INSERT INTO ChannelRanges VALUES(118,29,360,369,'60 day trial');
+INSERT INTO ChannelRanges VALUES(119,29,85,89,NULL);
+INSERT INTO ChannelRanges VALUES(120,30,803,899,NULL);
+INSERT INTO ChannelRanges VALUES(121,31,119,119,'Serial must be between 000700 and 001799 ');
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -157,6 +161,9 @@ INSERT INTO BINKs VALUES(37,25,'2C');
 INSERT INTO BINKs VALUES(38,26,'2D');
 INSERT INTO BINKs VALUES(39,27,'2D');
 INSERT INTO BINKs VALUES(40,28,'2E');
+INSERT INTO BINKs VALUES(41,29,'2C');
+INSERT INTO BINKs VALUES(42,30,'2D');
+INSERT INTO BINKs VALUES(43,31,'2D');
 CREATE TABLE IF NOT EXISTS "products"
 (
     ID             INTEGER
@@ -196,10 +203,13 @@ INSERT INTO products VALUES(25,'Windows XP','Professional','Retail','SP3',NULL,'
 INSERT INTO products VALUES(26,'Windows XP','Professional','OEM-COA','SP3',NULL,'x86');
 INSERT INTO products VALUES(27,'Windows XP','Professional','OEM-SLP','SP3',NULL,'x86');
 INSERT INTO products VALUES(28,'Windows XP','Professional','Volume','SP3',NULL,'x86');
+INSERT INTO products VALUES(29,'Windows XP','Media Center Edition 2005','Retail','SP2',NULL,'x86');
+INSERT INTO products VALUES(30,'Windows XP','Media Center Edition 2005','OEM-COA','SP2',NULL,'x86');
+INSERT INTO products VALUES(31,'Windows XP','Media Center Edition 2005','OEM-SLP','SP2',NULL,'x86');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',40);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',117);
-INSERT INTO sqlite_sequence VALUES('products',28);
+INSERT INTO sqlite_sequence VALUES('BINKs',43);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',121);
+INSERT INTO sqlite_sequence VALUES('products',31);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
