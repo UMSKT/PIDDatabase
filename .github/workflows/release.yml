@@ -13,9 +13,29 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      
+    - name: Install Dependencies
+      run: sudo apt-get update && sudo apt-get install -y wget build-essential tcl
 
-    - name: Install SQLite
-      run: sudo apt-get install -y sqlite3
+    - name: Fetch Latest SQLite Version
+      run: |
+        # Get the latest version number from the SQLite website
+        LATEST_VERSION=$(curl -s https://www.sqlite.org/download.html | grep -oP 'sqlite-autoconf-\K[0-9]+(?=\.tar\.gz)' | head -n 1)
+        echo "Latest version: $LATEST_VERSION"
+        # Construct the download URL
+        DOWNLOAD_URL="https://www.sqlite.org/2024/sqlite-autoconf-$LATEST_VERSION.tar.gz"
+        echo "Download URL: $DOWNLOAD_URL"
+        echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
+        echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+
+    - name: Download and Compile SQLite
+      run: |
+        wget ${{ env.DOWNLOAD_URL }}
+        tar xvfz sqlite-autoconf-${{ env.LATEST_VERSION }}.tar.gz
+        cd sqlite-autoconf-${{ env.LATEST_VERSION }}
+        ./configure
+        make
+        sudo make install
 
     - name: Check SQLite version
       run: sqlite3 --version
