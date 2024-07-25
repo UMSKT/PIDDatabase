@@ -47,8 +47,7 @@ jobs:
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: piddatabase.db
         tag_name: v1.0.${{ github.run_number }}
+        token: ${{ secrets.UPLOAD_KEY }}
