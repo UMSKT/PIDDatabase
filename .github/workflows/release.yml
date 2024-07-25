@@ -11,6 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Refresh token
+      id: refresh_token
+      uses: actions/create-github-app-token@v1
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PEM }}
+        owner: ${{ github.repository_owner }}
+    
     - name: Checkout Repository
       uses: actions/checkout@v2
       
