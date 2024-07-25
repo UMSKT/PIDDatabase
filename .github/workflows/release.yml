@@ -15,8 +15,8 @@ jobs:
       id: refresh_token
       uses: actions/create-github-app-token@v1
       with:
-        app_id: ${{ secrets.APP_ID }}
-        private_key: ${{ secrets.APP_PEM }}
+        app-id: ${{ secrets.APP_ID }}
+        private-key: ${{ secrets.APP_PEM }}
         owner: ${{ github.repository_owner }}
     
     - name: Checkout Repository
