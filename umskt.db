@@ -247,7 +247,7 @@ CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
         c.MainTableID,
-        CONCAT('[', c.StartRange, ',', c.EndRange, ']: ', c.Notes) AS NoteEntry
+        '[' || c.StartRange || ',' || c.EndRange || ']: ' || c.Notes AS NoteEntry
     FROM
         ChannelRanges c
     WHERE
@@ -259,18 +259,14 @@ WITH NotesCTE AS (
 -- Main query to aggregate data
 SELECT
     m.name, m.edition, m.licenseType, m.serviceRelease, m.variant, m.architecture,
-    CONCAT('[', GROUP_CONCAT(DISTINCT b.BINK ORDER BY b.BINK), ']') AS BINKs,
-    CONCAT(
-            '[',
-            GROUP_CONCAT(
-                    DISTINCT CONCAT('[', c.StartRange, ',', c.EndRange, ']')
-                    ORDER BY c.StartRange
-            ),
-            ']'
-    ) AS ChannelRanges,
+    '[' || GROUP_CONCAT(DISTINCT b.BINK ORDER BY b.BINK) || ']' AS BINKs,
+    '[' || GROUP_CONCAT(
+            DISTINCT '[' || c.StartRange || ',' || c.EndRange || ']'
+            ORDER BY c.StartRange
+           ) || ']' AS ChannelRanges,
     GROUP_CONCAT(
-            DISTINCT NoteEntry
-            ORDER BY NoteEntry
+            DISTINCT n.NoteEntry
+            ORDER BY n.NoteEntry
     ) AS Notes
 FROM
     products m
