@@ -37,9 +37,6 @@ jobs:
         make
         sudo make install
 
-    - name: Check SQLite version
-      run: sqlite3 --version
-
     - name: Convert Plain-text to SQLite
       run: |
         sqlite3 piddatabase.db < umskt.db
