@@ -1,0 +1,27 @@
+name: Report missing data
+description: If you have a product that we have no data on, report it here.
+title: "[Missing]: "
+labels: ["missing"]
+body:
+  - type: textarea
+    id: product
+    attributes:
+      label: Product information
+      description: Tell us everything you know about the product.
+      placeholder: Windows XP, Media Center Edition 2005, Service Pack 2, OEM, found it with a Gateway FMC-901X, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: pkey
+    attributes:
+      label: Product key
+      description: Enter the product key in, if you have one for it.
+    validations:
+      required: false
+  - type: textarea
+    id: download
+    attributes:
+      label: Download link
+      description: Enter a link we can use to download the product ourselves.
+    validations:
+      required: true
