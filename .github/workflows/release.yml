@@ -13,9 +13,32 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      
+    - name: Install Dependencies
+      run: sudo apt-get update && sudo apt-get install -y wget build-essential tcl
 
-    - name: Install SQLite
-      run: sudo apt-get install -y sqlite3
+    - name: Fetch Latest SQLite Version
+      run: |
+        # Get the latest version number from the SQLite website
+        LATEST_VERSION=$(curl -s https://www.sqlite.org/download.html | grep -oP 'sqlite-autoconf-\K[0-9]+(?=\.tar\.gz)' | head -n 1)
+        echo "Latest version: $LATEST_VERSION"
+        # Construct the download URL
+        DOWNLOAD_URL="https://www.sqlite.org/2024/sqlite-autoconf-$LATEST_VERSION.tar.gz"
+        echo "Download URL: $DOWNLOAD_URL"
+        echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
+        echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+
+    - name: Download and Compile SQLite
+      run: |
+        wget ${{ env.DOWNLOAD_URL }}
+        tar xvfz sqlite-autoconf-${{ env.LATEST_VERSION }}.tar.gz
+        cd sqlite-autoconf-${{ env.LATEST_VERSION }}
+        ./configure
+        make
+        sudo make install
+
+    - name: Check SQLite version
+      run: sqlite3 --version
 
     - name: Convert Plain-text to SQLite
       run: |
@@ -23,21 +46,8 @@ jobs:
 
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v2
       with:
+        files: piddatabase.db
         tag_name: v1.0.${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
-        draft: true
-        prerelease: false
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./piddatabase.db
-        asset_name: piddatabase.db
-        asset_content_type: application/octet-stream
+        token: ${{ secrets.UPLOAD_KEY }}
