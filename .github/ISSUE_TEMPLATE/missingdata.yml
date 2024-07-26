@@ -15,13 +15,15 @@ body:
     id: pkey
     attributes:
       label: Product key
-      description: Enter the product key in, if you have one for it.
+      description: Enter the product key(s) in, if you have any for the product.
+      placeholder: ABCDE-FGHIJ-KLMNO-PQRST-UVWXY
     validations:
       required: false
   - type: textarea
     id: download
     attributes:
       label: Download link
-      description: Enter a link we can use to download the product ourselves.
+      description: Enter the download link(s) we can use to download the product ourselves.
+      placeholder: https://www.youtube.com/watch?v=a6PrKEqHdA8
     validations:
       required: true
