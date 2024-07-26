@@ -136,6 +136,13 @@ INSERT INTO ChannelRanges VALUES(129,39,360,364,NULL);
 INSERT INTO ChannelRanges VALUES(130,40,170,269,NULL);
 INSERT INTO ChannelRanges VALUES(131,41,119,119,'Serial must be between (and including) 000300 and 000799');
 INSERT INTO ChannelRanges VALUES(132,42,699,699,NULL);
+INSERT INTO ChannelRanges VALUES(133,43,306,370,NULL);
+INSERT INTO ChannelRanges VALUES(134,43,371,410,'60 day trial');
+INSERT INTO ChannelRanges VALUES(135,44,5,118,NULL);
+INSERT INTO ChannelRanges VALUES(136,45,119,119,NULL);
+INSERT INTO ChannelRanges VALUES(137,46,640,649,NULL);
+INSERT INTO ChannelRanges VALUES(138,46,652,657,NULL);
+INSERT INTO ChannelRanges VALUES(139,47,1,2,'14 day trial, 185 day eval. period');
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -186,6 +193,11 @@ INSERT INTO BINKs VALUES(51,39,'2C');
 INSERT INTO BINKs VALUES(52,40,'2D');
 INSERT INTO BINKs VALUES(53,41,'2D');
 INSERT INTO BINKs VALUES(54,42,'2E');
+INSERT INTO BINKs VALUES(55,43,'66');
+INSERT INTO BINKs VALUES(56,44,'67');
+INSERT INTO BINKs VALUES(57,45,'67');
+INSERT INTO BINKs VALUES(58,46,'64');
+INSERT INTO BINKs VALUES(59,47,'64');
 CREATE TABLE IF NOT EXISTS "products"
 (
     ID             INTEGER
@@ -239,10 +251,15 @@ INSERT INTO products VALUES(39,'Windows XP','Tablet PC Edition 2005','Retail','S
 INSERT INTO products VALUES(40,'Windows XP','Tablet PC Edition 2005','OEM-COA','SP2',NULL,'x86');
 INSERT INTO products VALUES(41,'Windows XP','Tablet PC Edition 2005','OEM-SLP','SP2',NULL,'x86');
 INSERT INTO products VALUES(42,'Windows XP','Tablet PC Edition 2005','Volume','SP2',NULL,'x86');
+INSERT INTO products VALUES(43,'Windows XP','Professional','Retail','SP1',NULL,'x64');
+INSERT INTO products VALUES(44,'Windows XP','Professional','OEM-COA','SP1',NULL,'x64');
+INSERT INTO products VALUES(45,'Windows XP','Professional','OEM-SLP','SP1',NULL,'x64');
+INSERT INTO products VALUES(46,'Windows XP','Professional','Volume','SP1',NULL,'x64');
+INSERT INTO products VALUES(47,'Windows XP','Professional','Evaluation','SP1',NULL,'x64');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',54);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',132);
-INSERT INTO sqlite_sequence VALUES('products',42);
+INSERT INTO sqlite_sequence VALUES('BINKs',59);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',139);
+INSERT INTO sqlite_sequence VALUES('products',47);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
