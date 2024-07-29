@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+    paths-ignore: [ '**.md'] # If only these files are edited, skip
   workflow_dispatch:
 
 jobs:
