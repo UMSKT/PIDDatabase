@@ -1,11 +1,11 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE ChannelRanges (
-                                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                                    MainTableID INT,
-                                    StartRange INT,
-                                    EndRange INT, Notes TEXT,
-                                    FOREIGN KEY (MainTableID) REFERENCES UniqueNames(ID)
+CREATE TABLE ChannelRanges (
+                                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    MainTableID INT,
+                                    StartRange INT,
+                                    EndRange INT, Notes TEXT,
+                                    FOREIGN KEY (MainTableID) REFERENCES UniqueNames(ID)
 );
 INSERT INTO ChannelRanges VALUES(4,1,5,85,NULL);
 INSERT INTO ChannelRanges VALUES(5,1,337,359,'60 day trial');
@@ -124,17 +124,17 @@ INSERT INTO ChannelRanges VALUES(117,28,704,705,NULL);
 INSERT INTO ChannelRanges VALUES(118,29,360,369,'60 day trial');
 INSERT INTO ChannelRanges VALUES(119,29,85,89,NULL);
 INSERT INTO ChannelRanges VALUES(120,30,803,899,NULL);
-INSERT INTO ChannelRanges VALUES(121,31,119,119,'Serial must be between (and including) 000700 and 001799 ');
+INSERT INTO ChannelRanges VALUES(121,31,119,119,NULL);
 INSERT INTO ChannelRanges VALUES(122,32,365,369,'60 day trial');
 INSERT INTO ChannelRanges VALUES(123,33,803,899,'3rd party OEM recovery images only');
-INSERT INTO ChannelRanges VALUES(124,34,119,119,'Serial must be between (and including) 000700 and 001799 ');
+INSERT INTO ChannelRanges VALUES(124,34,119,119,NULL);
 INSERT INTO ChannelRanges VALUES(125,35,360,364,NULL);
 INSERT INTO ChannelRanges VALUES(126,36,170,269,NULL);
-INSERT INTO ChannelRanges VALUES(127,37,119,119,'Serial must be between (and including) 000300 and 000799');
+INSERT INTO ChannelRanges VALUES(127,37,119,119,NULL);
 INSERT INTO ChannelRanges VALUES(128,38,699,699,NULL);
 INSERT INTO ChannelRanges VALUES(129,39,360,364,NULL);
 INSERT INTO ChannelRanges VALUES(130,40,170,269,NULL);
-INSERT INTO ChannelRanges VALUES(131,41,119,119,'Serial must be between (and including) 000300 and 000799');
+INSERT INTO ChannelRanges VALUES(131,41,119,119,NULL);
 INSERT INTO ChannelRanges VALUES(132,42,699,699,NULL);
 INSERT INTO ChannelRanges VALUES(133,43,306,370,NULL);
 INSERT INTO ChannelRanges VALUES(134,43,371,410,'60 day trial');
@@ -176,7 +176,11 @@ INSERT INTO ChannelRanges VALUES(169,52,192,336,NULL);
 INSERT INTO ChannelRanges VALUES(170,52,755,899,NULL);
 INSERT INTO ChannelRanges VALUES(171,52,921,979,NULL);
 INSERT INTO ChannelRanges VALUES(172,53,119,119,NULL);
-INSERT INTO ChannelRanges VALUES(216,60,190,190,'Serial must be 000125. Speculation, must be researched further');
+INSERT INTO ChannelRanges VALUES(217,54,85,85,NULL);
+INSERT INTO ChannelRanges VALUES(218,54,106,106,NULL);
+INSERT INTO ChannelRanges VALUES(219,54,188,188,NULL);
+INSERT INTO ChannelRanges VALUES(220,55,170,186,NULL);
+INSERT INTO ChannelRanges VALUES(221,55,190,190,NULL);
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -238,7 +242,8 @@ INSERT INTO BINKs VALUES(62,50,'2B');
 INSERT INTO BINKs VALUES(63,51,'2A');
 INSERT INTO BINKs VALUES(64,52,'2B');
 INSERT INTO BINKs VALUES(65,53,'2B');
-INSERT INTO BINKs VALUES(72,60,'2B');
+INSERT INTO BINKs VALUES(66,54,'2A');
+INSERT INTO BINKs VALUES(67,55,'2B');
 CREATE TABLE IF NOT EXISTS "products"
 (
     ID             INTEGER
@@ -303,11 +308,28 @@ INSERT INTO products VALUES(50,'Windows XP','Home Edition','OEM-SLP','SP2','N','
 INSERT INTO products VALUES(51,'Windows XP','Home Edition','Retail','SP3','N','x86');
 INSERT INTO products VALUES(52,'Windows XP','Home Edition','OEM-COA','SP3','N','x86');
 INSERT INTO products VALUES(53,'Windows XP','Home Edition','OEM-SLP','SP3','N','x86');
-INSERT INTO products VALUES(60,'Windows XP','Home Edition','OEM-COA','SP2','K','x86');
+INSERT INTO products VALUES(54,'Windows XP','Home Edition','Retail','SP2','K','x86');
+INSERT INTO products VALUES(55,'Windows XP','Home Edition','OEM-COA','SP2','K','x86');
+CREATE TABLE IF NOT EXISTS "SerialRanges"
+(
+    ID                 INTEGER
+        primary key autoincrement,
+    MainChannelRangeID INTEGER not null,
+    StartRange         TEXT    not null,
+    EndRange           TEXT    not null
+);
+INSERT INTO SerialRanges VALUES(1,41,'119-000300','119-000699');
+INSERT INTO SerialRanges VALUES(3,37,'119-000300','119-000699');
+INSERT INTO SerialRanges VALUES(4,34,'119-000700','119-001799');
+INSERT INTO SerialRanges VALUES(5,31,'119-000700','119-001799');
+INSERT INTO SerialRanges VALUES(6,54,'085-002000','085-101999');
+INSERT INTO SerialRanges VALUES(7,54,'106-000000','106-199999');
+INSERT INTO SerialRanges VALUES(8,55,'190-000000','190-002499');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',72);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',216);
-INSERT INTO sqlite_sequence VALUES('products',60);
+INSERT INTO sqlite_sequence VALUES('BINKs',74);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',221);
+INSERT INTO sqlite_sequence VALUES('products',63);
+INSERT INTO sqlite_sequence VALUES('SerialRanges',8);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
@@ -329,6 +351,10 @@ SELECT
             DISTINCT '[' || c.StartRange || ',' || c.EndRange || ']'
             ORDER BY c.StartRange
            ) || ']' AS ChannelRanges,
+    '[' || GROUP_CONCAT(
+           DISTINCT '[' || SUBSTR(s.StartRange, 1, 3) || ',' || SUBSTR(s.EndRange, 1, 3) || ']: [' || SUBSTR(s.StartRange, 5) || ',' || SUBSTR(s.EndRange, 5) || ']'
+           ORDER BY c.StartRange
+           ) || ']' AS SerialRanges,
     GROUP_CONCAT(
             DISTINCT n.NoteEntry
             ORDER BY n.NoteEntry
@@ -339,6 +365,8 @@ FROM
     BINKs b ON m.ID = b.MainTableID
         LEFT JOIN
     ChannelRanges c ON m.ID = c.MainTableID
+        LEFT JOIN
+    SerialRanges s ON m.ID = s.MainChannelRangeID
         LEFT JOIN
     NotesCTE n ON m.ID = n.MainTableID
 GROUP BY
