@@ -198,6 +198,16 @@ INSERT INTO ChannelRanges VALUES(235,60,377,377,NULL);
 INSERT INTO ChannelRanges VALUES(236,60,984,984,NULL);
 INSERT INTO ChannelRanges VALUES(237,61,189,189,NULL);
 INSERT INTO ChannelRanges VALUES(238,71,191,191,NULL);
+INSERT INTO ChannelRanges VALUES(239,72,5,84,NULL);
+INSERT INTO ChannelRanges VALUES(240,72,337,359,'60 day trial');
+INSERT INTO ChannelRanges VALUES(241,72,755,779,NULL);
+INSERT INTO ChannelRanges VALUES(242,72,785,789,NULL);
+INSERT INTO ChannelRanges VALUES(243,74,119,119,NULL);
+INSERT INTO ChannelRanges VALUES(244,73,120,169,NULL);
+INSERT INTO ChannelRanges VALUES(245,73,400,665,NULL);
+INSERT INTO ChannelRanges VALUES(246,73,667,699,NULL);
+INSERT INTO ChannelRanges VALUES(247,73,700,754,NULL);
+INSERT INTO ChannelRanges VALUES(248,75,640,699,NULL);
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -271,6 +281,30 @@ INSERT INTO BINKs VALUES(81,68,'2B');
 INSERT INTO BINKs VALUES(82,69,'2B');
 INSERT INTO BINKs VALUES(83,70,'2B');
 INSERT INTO BINKs VALUES(84,71,'2B');
+INSERT INTO BINKs VALUES(85,72,'2C');
+INSERT INTO BINKs VALUES(86,73,'2D');
+INSERT INTO BINKs VALUES(87,74,'2D');
+INSERT INTO BINKs VALUES(88,75,'2E');
+INSERT INTO BINKs VALUES(89,76,'2C');
+INSERT INTO BINKs VALUES(90,77,'2D');
+INSERT INTO BINKs VALUES(91,78,'2D');
+INSERT INTO BINKs VALUES(92,79,'2E');
+INSERT INTO BINKs VALUES(93,80,'2C');
+INSERT INTO BINKs VALUES(94,81,'2D');
+INSERT INTO BINKs VALUES(95,82,'2D');
+INSERT INTO BINKs VALUES(96,83,'2E');
+INSERT INTO BINKs VALUES(97,84,'2C');
+INSERT INTO BINKs VALUES(98,85,'2D');
+INSERT INTO BINKs VALUES(99,86,'2D');
+INSERT INTO BINKs VALUES(100,87,'2E');
+INSERT INTO BINKs VALUES(101,88,'2C');
+INSERT INTO BINKs VALUES(102,89,'2D');
+INSERT INTO BINKs VALUES(103,90,'2D');
+INSERT INTO BINKs VALUES(104,91,'2E');
+INSERT INTO BINKs VALUES(105,92,'2C');
+INSERT INTO BINKs VALUES(106,93,'2D');
+INSERT INTO BINKs VALUES(107,94,'2D');
+INSERT INTO BINKs VALUES(108,95,'2E');
 CREATE TABLE IF NOT EXISTS "products"
 (
     ID             INTEGER
@@ -347,6 +381,30 @@ INSERT INTO products VALUES(68,'Windows XP','Home Edition','OEM-SLP','SP2','K','
 INSERT INTO products VALUES(69,'Windows XP','Home Edition','OEM-SLP','SP3','K','x86');
 INSERT INTO products VALUES(70,'Windows XP','Home Edition','OEM-SLP','SP2','KN','x86');
 INSERT INTO products VALUES(71,'Windows XP','Home Edition','OEM-SLP','SP3','KN','x86');
+INSERT INTO products VALUES(72,'Windows XP','Professional','Retail','SP2','N','x86');
+INSERT INTO products VALUES(73,'Windows XP','Professional','OEM-COA','SP2','N','x86');
+INSERT INTO products VALUES(74,'Windows XP','Professional','OEM-SLP','SP2','N','x86');
+INSERT INTO products VALUES(75,'Windows XP','Professional','Volume','SP2','N','x86');
+INSERT INTO products VALUES(76,'Windows XP','Professional','Retail','SP3','N','x86');
+INSERT INTO products VALUES(77,'Windows XP','Professional','OEM-COA','SP3','N','x86');
+INSERT INTO products VALUES(78,'Windows XP','Professional','OEM-SLP','SP3','N','x86');
+INSERT INTO products VALUES(79,'Windows XP','Professional','Volume','SP3','N','x86');
+INSERT INTO products VALUES(80,'Windows XP','Professional','Retail','SP2','K','x86');
+INSERT INTO products VALUES(81,'Windows XP','Professional','OEM-COA','SP2','K','x86');
+INSERT INTO products VALUES(82,'Windows XP','Professional','OEM-SLP','SP2','K','x86');
+INSERT INTO products VALUES(83,'Windows XP','Professional','Volume','SP2','K','x86');
+INSERT INTO products VALUES(84,'Windows XP','Professional','Retail','SP3','K','x86');
+INSERT INTO products VALUES(85,'Windows XP','Professional','OEM-COA','SP3','K','x86');
+INSERT INTO products VALUES(86,'Windows XP','Professional','OEM-SLP','SP3','K','x86');
+INSERT INTO products VALUES(87,'Windows XP','Professional','Volume','SP3','K','x86');
+INSERT INTO products VALUES(88,'Windows XP','Professional','Retail','SP2','KN','x86');
+INSERT INTO products VALUES(89,'Windows XP','Professional','OEM-COA','SP2','KN','x86');
+INSERT INTO products VALUES(90,'Windows XP','Professional','OEM-SLP','SP2','KN','x86');
+INSERT INTO products VALUES(91,'Windows XP','Professional','Volume','SP2','KN','x86');
+INSERT INTO products VALUES(92,'Windows XP','Professional','Retail','SP3','KN','x86');
+INSERT INTO products VALUES(93,'Windows XP','Professional','OEM-COA','SP3','KN','x86');
+INSERT INTO products VALUES(94,'Windows XP','Professional','OEM-SLP','SP3','KN','x86');
+INSERT INTO products VALUES(95,'Windows XP','Professional','Volume','SP3','KN','x86');
 CREATE TABLE IF NOT EXISTS "SerialRanges"
 (
     ID                 INTEGER
@@ -355,10 +413,10 @@ CREATE TABLE IF NOT EXISTS "SerialRanges"
     StartRange         TEXT    not null,
     EndRange           TEXT    not null
 );
-INSERT INTO SerialRanges VALUES(1,41,'119-000300','119-000699');
-INSERT INTO SerialRanges VALUES(3,37,'119-000300','119-000699');
-INSERT INTO SerialRanges VALUES(4,34,'119-000700','119-001799');
-INSERT INTO SerialRanges VALUES(5,31,'119-000700','119-001799');
+INSERT INTO SerialRanges VALUES(1,41,'119-000300','119-000799');
+INSERT INTO SerialRanges VALUES(3,37,'119-000300','119-000799');
+INSERT INTO SerialRanges VALUES(4,34,'119-000800','119-001799');
+INSERT INTO SerialRanges VALUES(5,31,'119-000800','119-001799');
 INSERT INTO SerialRanges VALUES(6,54,'085-002000','085-101999');
 INSERT INTO SerialRanges VALUES(7,54,'106-000000','106-199999');
 INSERT INTO SerialRanges VALUES(8,68,'190-000000','190-002499');
@@ -377,11 +435,13 @@ INSERT INTO SerialRanges VALUES(22,60,'377-405000','377-566999');
 INSERT INTO SerialRanges VALUES(23,60,'984-200000','984-399999');
 INSERT INTO SerialRanges VALUES(24,71,'191-000000','191-002499');
 INSERT INTO SerialRanges VALUES(25,69,'190-000000','190-002499');
+INSERT INTO SerialRanges VALUES(26,74,'119-000000','119-000299');
+INSERT INTO SerialRanges VALUES(27,74,'119-001800','119-999999');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',84);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',238);
-INSERT INTO sqlite_sequence VALUES('products',71);
-INSERT INTO sqlite_sequence VALUES('SerialRanges',25);
+INSERT INTO sqlite_sequence VALUES('BINKs',108);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',248);
+INSERT INTO sqlite_sequence VALUES('products',95);
+INSERT INTO sqlite_sequence VALUES('SerialRanges',27);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
