@@ -1,5 +1,11 @@
 # PIDDatabase
-To use the database, you'll need SQLite3 and Git installed.
+To use the database, you can:
+* Use our neat little [web-based viewer](https://umskt.github.io/PIDDatabase-viewer/).
+* Download the real database through the Releases tab.
+* Clone the repository through the instructions below.
+
+## Cloning
+You'll need SQLite3 **3.46.0 or higher** and Git installed.
 
 Commands to set it up (ignore "not a database" errors, it's fixing that):
 ```
@@ -11,4 +17,10 @@ git checkout HEAD -- "$(git rev-parse --show-toplevel)"
 git stash pop
 ```
 
-Commits made to the repository will be converted back into plain text automatically.
+To commit to the repository, run these commands:
+```
+git add .
+git commit -m "your commit message"
+git push
+```
+You will need to add the `git add .`, Git will yell at you otherwise.
