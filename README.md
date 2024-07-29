@@ -1,7 +1,7 @@
 # PIDDatabase
 To use the database, you can:
 * Use our neat little [web-based viewer](https://umskt.github.io/PIDDatabase-viewer/).
-* Download the real database through the Releases tab.
+* Download the database/backup through the Releases tab.
 * Clone the repository through the instructions below.
 
 ## Cloning
