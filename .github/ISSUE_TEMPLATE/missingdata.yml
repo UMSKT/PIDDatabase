@@ -19,6 +19,14 @@ body:
       placeholder: ABCDE-FGHIJ-KLMNO-PQRST-UVWXY
     validations:
       required: false
+  - type: input
+    id: pkey
+    attributes:
+      label: About box
+      description: Copy (a link to) an image of the about box (usually in Help -> About) of the product, if available.
+      placeholder: https://ia902903.us.archive.org/13/items/devils0wn/DevilsownatMS.jpg
+    validations:
+      required: false
   - type: textarea
     id: download
     attributes:
