@@ -20,7 +20,7 @@ body:
     validations:
       required: false
   - type: input
-    id: pkey
+    id: aboutbox
     attributes:
       label: About box
       description: Copy (a link to) an image of the about box (usually in Help -> About) of the product, if available.
