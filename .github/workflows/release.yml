@@ -41,11 +41,14 @@ jobs:
     - name: Convert Plain-text to SQLite
       run: |
         sqlite3 piddatabase.db < umskt.db
+        mv umskt.db piddatabase.sql
 
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v2
       with:
-        files: piddatabase.db
+        files: |
+          piddatabase.db
+          piddatabase.sql
         tag_name: v1.0.${{ github.run_number }}
         token: ${{ secrets.UPLOAD_KEY }}
