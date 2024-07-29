@@ -19,7 +19,7 @@ body:
       placeholder: ABCDE-FGHIJ-KLMNO-PQRST-UVWXY
     validations:
       required: false
-  - type: input
+  - type: textarea
     id: aboutbox
     attributes:
       label: About box
