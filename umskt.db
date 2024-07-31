@@ -254,6 +254,7 @@ INSERT INTO ChannelRanges VALUES(301,97,301,320,'Bypasses activation, 185 day ev
 INSERT INTO ChannelRanges VALUES(302,98,291,300,NULL);
 INSERT INTO ChannelRanges VALUES(303,99,301,320,'Bypasses activation, 185 day eval. period');
 INSERT INTO ChannelRanges VALUES(304,100,640,699,NULL);
+INSERT INTO ChannelRanges VALUES(305,101,35,39,NULL);
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -356,6 +357,7 @@ INSERT INTO BINKs VALUES(110,97,'33');
 INSERT INTO BINKs VALUES(111,98,'32');
 INSERT INTO BINKs VALUES(112,99,'33');
 INSERT INTO BINKs VALUES(113,100,'2E');
+INSERT INTO BINKs VALUES(114,101,'50');
 CREATE TABLE IF NOT EXISTS "SerialRanges"
 (
     ID                 INTEGER
@@ -520,11 +522,12 @@ INSERT INTO products VALUES(97,'Windows XP','Starter Edition','Evaluation','SP2'
 INSERT INTO products VALUES(98,'Windows XP','Starter Edition','OEM-COA','SP3',NULL,'x86');
 INSERT INTO products VALUES(99,'Windows XP','Starter Edition','Evaluation','SP3',NULL,'x86');
 INSERT INTO products VALUES(100,'Windows Fundamentals for Legacy PC''s',NULL,'Volume','SP2',NULL,'x86');
+INSERT INTO products VALUES(101,'Halo: Combat Evolved',NULL,'Retail','RTM',NULL,'x86');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',113);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',304);
+INSERT INTO sqlite_sequence VALUES('BINKs',114);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',305);
 INSERT INTO sqlite_sequence VALUES('SerialRanges',54);
-INSERT INTO sqlite_sequence VALUES('products',100);
+INSERT INTO sqlite_sequence VALUES('products',101);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
