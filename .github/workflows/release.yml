@@ -37,7 +37,7 @@ jobs:
 
     - name: Convert Plain-text to SQLite
       run: |
-        sqlite3 piddatabase.db < umskt.db
+        ./sqlite3 piddatabase.db < umskt.db
         mv umskt.db piddatabase.sql
 
     - name: Create Release
