@@ -251,6 +251,8 @@ INSERT INTO ChannelRanges VALUES(298,93,114,114,NULL);
 INSERT INTO ChannelRanges VALUES(299,94,90,90,NULL);
 INSERT INTO ChannelRanges VALUES(300,96,291,300,NULL);
 INSERT INTO ChannelRanges VALUES(301,97,301,320,'Bypasses activation, 185 day eval. period');
+INSERT INTO ChannelRanges VALUES(302,98,291,300,NULL);
+INSERT INTO ChannelRanges VALUES(303,99,301,320,'Bypasses activation, 185 day eval. period');
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -350,6 +352,8 @@ INSERT INTO BINKs VALUES(107,94,'2D');
 INSERT INTO BINKs VALUES(108,95,'2E');
 INSERT INTO BINKs VALUES(109,96,'32');
 INSERT INTO BINKs VALUES(110,97,'33');
+INSERT INTO BINKs VALUES(111,98,'32');
+INSERT INTO BINKs VALUES(112,99,'33');
 CREATE TABLE IF NOT EXISTS "products"
 (
     ID             INTEGER
@@ -452,6 +456,8 @@ INSERT INTO products VALUES(94,'Windows XP','Professional','OEM-SLP','SP3','KN',
 INSERT INTO products VALUES(95,'Windows XP','Professional','Volume','SP3','KN','x86');
 INSERT INTO products VALUES(96,'Windows XP','Starter Edition','OEM-COA','SP2',NULL,'x86');
 INSERT INTO products VALUES(97,'Windows XP','Starter Edition','Evaluation','SP2',NULL,'x86');
+INSERT INTO products VALUES(98,'Windows XP','Starter Edition','OEM-COA','SP3',NULL,'x86');
+INSERT INTO products VALUES(99,'Windows XP','Starter Edition','Evaluation','SP3',NULL,'x86');
 CREATE TABLE IF NOT EXISTS "SerialRanges"
 (
     ID                 INTEGER
@@ -512,9 +518,9 @@ INSERT INTO SerialRanges VALUES(52,92,'336-605000','336-844999');
 INSERT INTO SerialRanges VALUES(53,92,'336-846000','336-999999');
 INSERT INTO SerialRanges VALUES(54,92,'385-000000','385-129999');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',110);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',301);
-INSERT INTO sqlite_sequence VALUES('products',97);
+INSERT INTO sqlite_sequence VALUES('BINKs',112);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',303);
+INSERT INTO sqlite_sequence VALUES('products',99);
 INSERT INTO sqlite_sequence VALUES('SerialRanges',54);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
