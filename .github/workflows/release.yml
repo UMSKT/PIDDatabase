@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install -y wget build-essential tcl
+      run: sudo apt-get update && sudo apt-get install -y wget build-essential tcl unzip
 
     - name: Fetch Latest SQLite Version
       run: |
@@ -24,19 +24,16 @@ jobs:
         LATEST_VERSION=$(curl -s https://www.sqlite.org/download.html | grep -oP 'sqlite-autoconf-\K[0-9]+(?=\.tar\.gz)' | head -n 1)
         echo "Latest version: $LATEST_VERSION"
         # Construct the download URL
-        DOWNLOAD_URL="https://www.sqlite.org/2024/sqlite-autoconf-$LATEST_VERSION.tar.gz"
+        DOWNLOAD_URL="https://www.sqlite.org/2024/sqlite-tools-linux-x64-$LATEST_VERSION.zip"
         echo "Download URL: $DOWNLOAD_URL"
         echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
         echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
 
-    - name: Download and Compile SQLite
+    - name: Download SQLite
       run: |
         wget ${{ env.DOWNLOAD_URL }}
-        tar xvfz sqlite-autoconf-${{ env.LATEST_VERSION }}.tar.gz
-        cd sqlite-autoconf-${{ env.LATEST_VERSION }}
-        ./configure
-        make
-        sudo make install
+        unzip sqlite-tools-linux-x64-${{ env.LATEST_VERSION }}.zip -d .
+        chmod +x sqlite3
 
     - name: Convert Plain-text to SQLite
       run: |
