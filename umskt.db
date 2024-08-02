@@ -264,6 +264,7 @@ INSERT INTO ChannelRanges VALUES(313,107,100,199,NULL);
 INSERT INTO ChannelRanges VALUES(314,108,940,960,NULL);
 INSERT INTO ChannelRanges VALUES(315,109,900,900,NULL);
 INSERT INTO ChannelRanges VALUES(316,110,620,620,NULL);
+INSERT INTO ChannelRanges VALUES(317,111,0,999,NULL);
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -376,6 +377,7 @@ INSERT INTO BINKs VALUES(120,107,'0D');
 INSERT INTO BINKs VALUES(121,108,'0D');
 INSERT INTO BINKs VALUES(122,109,'0D');
 INSERT INTO BINKs VALUES(123,110,'0D');
+INSERT INTO BINKs VALUES(124,111,'0E');
 CREATE TABLE IF NOT EXISTS "SerialRanges"
 (
     ID                 INTEGER
@@ -550,11 +552,12 @@ INSERT INTO products VALUES(107,'Windows Embedded 2009','Standard','Evaluation',
 INSERT INTO products VALUES(108,'Windows Embedded 2009','Standard','OEM-COA','SP3','Runtime','x86');
 INSERT INTO products VALUES(109,'Windows Embedded 2009','Standard','OEM-COA','SP3','Toolkit','x86');
 INSERT INTO products VALUES(110,'Windows Embedded 2009','POSReady','OEM-COA','SP3',NULL,'x86');
+INSERT INTO products VALUES(111,'Windows NT 4.0','Embedded','OEM-COA','RTM',NULL,'x86');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',123);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',316);
+INSERT INTO sqlite_sequence VALUES('BINKs',124);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',317);
 INSERT INTO sqlite_sequence VALUES('SerialRanges',54);
-INSERT INTO sqlite_sequence VALUES('products',110);
+INSERT INTO sqlite_sequence VALUES('products',111);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
