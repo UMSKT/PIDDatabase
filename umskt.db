@@ -257,6 +257,9 @@ INSERT INTO ChannelRanges VALUES(304,100,640,699,NULL);
 INSERT INTO ChannelRanges VALUES(305,101,35,39,NULL);
 INSERT INTO ChannelRanges VALUES(306,102,100,109,NULL);
 INSERT INTO ChannelRanges VALUES(307,103,200,899,NULL);
+INSERT INTO ChannelRanges VALUES(308,104,100,109,NULL);
+INSERT INTO ChannelRanges VALUES(309,105,200,899,NULL);
+INSERT INTO ChannelRanges VALUES(310,106,50,70,NULL);
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -362,6 +365,9 @@ INSERT INTO BINKs VALUES(113,100,'2E');
 INSERT INTO BINKs VALUES(114,101,'50');
 INSERT INTO BINKs VALUES(115,102,'0D');
 INSERT INTO BINKs VALUES(116,103,'0D');
+INSERT INTO BINKs VALUES(117,104,'0D');
+INSERT INTO BINKs VALUES(118,105,'0D');
+INSERT INTO BINKs VALUES(119,106,'0D');
 CREATE TABLE IF NOT EXISTS "SerialRanges"
 (
     ID                 INTEGER
@@ -529,11 +535,14 @@ INSERT INTO products VALUES(100,'Windows Fundamentals for Legacy PC''s',NULL,'Vo
 INSERT INTO products VALUES(101,'Halo: Combat Evolved',NULL,'Retail','RTM',NULL,'x86');
 INSERT INTO products VALUES(102,'Windows XP Embedded for Point of Service',NULL,'Evaluation','SP2',NULL,'x86');
 INSERT INTO products VALUES(103,'Windows XP Embedded for Point of Service',NULL,'Volume','SP2',NULL,'x86');
+INSERT INTO products VALUES(104,'Windows XP Embedded','Runtime','Evaluation','SP2',NULL,'x86');
+INSERT INTO products VALUES(105,'Windows XP Embedded','Runtime','Volume','SP2',NULL,'x86');
+INSERT INTO products VALUES(106,'Windows XP Embedded','Toolkit','Volume','SP2',NULL,'x86');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',116);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',307);
+INSERT INTO sqlite_sequence VALUES('BINKs',119);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',310);
 INSERT INTO sqlite_sequence VALUES('SerialRanges',54);
-INSERT INTO sqlite_sequence VALUES('products',103);
+INSERT INTO sqlite_sequence VALUES('products',106);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
