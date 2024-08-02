@@ -260,6 +260,8 @@ INSERT INTO ChannelRanges VALUES(307,103,200,899,NULL);
 INSERT INTO ChannelRanges VALUES(308,104,100,109,NULL);
 INSERT INTO ChannelRanges VALUES(309,105,200,899,NULL);
 INSERT INTO ChannelRanges VALUES(310,106,50,70,NULL);
+INSERT INTO ChannelRanges VALUES(311,107,100,199,NULL);
+INSERT INTO ChannelRanges VALUES(312,108,200,999,NULL);
 CREATE TABLE IF NOT EXISTS "BINKs"
 (
     ID          INTEGER
@@ -368,6 +370,8 @@ INSERT INTO BINKs VALUES(116,103,'0D');
 INSERT INTO BINKs VALUES(117,104,'0D');
 INSERT INTO BINKs VALUES(118,105,'0D');
 INSERT INTO BINKs VALUES(119,106,'0D');
+INSERT INTO BINKs VALUES(120,107,'0D');
+INSERT INTO BINKs VALUES(121,108,'0D');
 CREATE TABLE IF NOT EXISTS "SerialRanges"
 (
     ID                 INTEGER
@@ -535,14 +539,16 @@ INSERT INTO products VALUES(100,'Windows Fundamentals for Legacy PC''s',NULL,'Vo
 INSERT INTO products VALUES(101,'Halo: Combat Evolved',NULL,'Retail','RTM',NULL,'x86');
 INSERT INTO products VALUES(102,'Windows XP Embedded for Point of Service',NULL,'Evaluation','SP2',NULL,'x86');
 INSERT INTO products VALUES(103,'Windows XP Embedded for Point of Service',NULL,'Volume','SP2',NULL,'x86');
-INSERT INTO products VALUES(104,'Windows XP Embedded','Runtime','Evaluation','SP2',NULL,'x86');
-INSERT INTO products VALUES(105,'Windows XP Embedded','Runtime','Volume','SP2',NULL,'x86');
-INSERT INTO products VALUES(106,'Windows XP Embedded','Toolkit','Volume','SP2',NULL,'x86');
+INSERT INTO products VALUES(104,'Windows XP Embedded',NULL,'Evaluation','SP2','Runtime','x86');
+INSERT INTO products VALUES(105,'Windows XP Embedded',NULL,'Volume','SP2','Runtime','x86');
+INSERT INTO products VALUES(106,'Windows XP Embedded',NULL,'Volume','SP2','Toolkit','x86');
+INSERT INTO products VALUES(107,'Windows Embedded 2009','Standard','Evaluation','SP3','Runtime','x86');
+INSERT INTO products VALUES(108,'Windows Embedded 2009','Standard','Volume','SP3','Runtime','x86');
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('BINKs',119);
-INSERT INTO sqlite_sequence VALUES('ChannelRanges',310);
+INSERT INTO sqlite_sequence VALUES('BINKs',121);
+INSERT INTO sqlite_sequence VALUES('ChannelRanges',312);
 INSERT INTO sqlite_sequence VALUES('SerialRanges',54);
-INSERT INTO sqlite_sequence VALUES('products',106);
+INSERT INTO sqlite_sequence VALUES('products',108);
 CREATE VIEW FullView as
 WITH NotesCTE AS (
     SELECT
