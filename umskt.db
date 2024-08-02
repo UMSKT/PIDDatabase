@@ -544,12 +544,12 @@ INSERT INTO products VALUES(101,'Halo: Combat Evolved',NULL,'Retail','RTM',NULL,
 INSERT INTO products VALUES(102,'Windows XP Embedded for Point of Service',NULL,'Evaluation','SP2',NULL,'x86');
 INSERT INTO products VALUES(103,'Windows XP Embedded for Point of Service',NULL,'Volume','SP2',NULL,'x86');
 INSERT INTO products VALUES(104,'Windows XP Embedded',NULL,'Evaluation','SP2','Runtime','x86');
-INSERT INTO products VALUES(105,'Windows XP Embedded',NULL,'Volume','SP2','Runtime','x86');
-INSERT INTO products VALUES(106,'Windows XP Embedded',NULL,'Volume','SP2','Toolkit','x86');
+INSERT INTO products VALUES(105,'Windows XP Embedded',NULL,'OEM-COA','SP2','Runtime','x86');
+INSERT INTO products VALUES(106,'Windows XP Embedded',NULL,'OEM-COA','SP2','Toolkit','x86');
 INSERT INTO products VALUES(107,'Windows Embedded 2009','Standard','Evaluation','SP3','Runtime','x86');
-INSERT INTO products VALUES(108,'Windows Embedded 2009','Standard','Volume','SP3','Runtime','x86');
-INSERT INTO products VALUES(109,'Windows Embedded 2009','Standard','Volume','SP3','Toolkit','x86');
-INSERT INTO products VALUES(110,'Windows Embedded 2009','POSReady','Volume','SP3',NULL,'x86');
+INSERT INTO products VALUES(108,'Windows Embedded 2009','Standard','OEM-COA','SP3','Runtime','x86');
+INSERT INTO products VALUES(109,'Windows Embedded 2009','Standard','OEM-COA','SP3','Toolkit','x86');
+INSERT INTO products VALUES(110,'Windows Embedded 2009','POSReady','OEM-COA','SP3',NULL,'x86');
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('BINKs',123);
 INSERT INTO sqlite_sequence VALUES('ChannelRanges',316);
